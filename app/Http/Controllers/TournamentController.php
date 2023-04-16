@@ -41,7 +41,7 @@ class TournamentController extends Controller
             $teams->save();
 
         }
-        return $this->index();
+        return redirect()->route('tournament.index');
     }
 
     /**
