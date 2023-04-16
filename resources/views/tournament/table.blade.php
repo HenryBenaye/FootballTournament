@@ -188,12 +188,20 @@
     }
 </style>
 <body class="antialiased h-full">
-@foreach($tournament->team as $teams)
-    {{$teams->team_name}}
-@endforeach
+
 <x-layout>
 
 </x-layout>
+<div>
+    <h1>Teams</h1>
+    <ol id="teamList">
+        @foreach($tournament->team as $teams)
+            <li class="team">
+                {{$teams->team_name}}
+            </li>
+        @endforeach
+    </ol>
+</div>
 <div id="add" class="metroBtn">Add Bracket</div>
 <div id="clear" class="metroBtn">Clear</div>
 <div class="brackets" id="brackets"></div>
@@ -201,10 +209,15 @@
 </body>
 </html>
 <script>
-
+    const myElement = document.querySelectorAll('.team');
+    var teams = []
+    myElement.forEach(postLike)
+    function postLike(item, index) {
+        teams.push(item.textContent)
+    }
     var knownBrackets = [2, 4, 8, 16, 32, 64], // brackets with "perfect" proportions (full fields, no byes)
 
-        exampleTeams = _.shuffle(["New Jersey Devils", "New York Islanders", "New York Rangers", "Philadelphia Flyers", "New Jersey Devils", "New York Islanders", "New York Rangers", "Philadelphia Flyers", "New Jersey Devils", "New York Islanders", "New York Rangers", "Philadelphia Flyers", "New Jersey Devils", "New York Islanders", "New York Rangers", "Philadelphia Flyers", "New Jersey Devils", "New York Islanders", "New York Rangers", "Philadelphia Flyers", "New Jersey Devils", "New York Islanders", "New York Rangers", "Philadelphia Flyers", "New Jersey Devils", "New York Islanders", "New York Rangers", "Philadelphia Flyers", "New Jersey Devils", "New York Islanders", "New York Rangers", "Philadelphia Flyers", "New Jersey Devils", "New York Islanders", "New York Rangers", "Philadelphia Flyers", "New Jersey Devils", "New York Islanders", "New York Rangers", "Philadelphia Flyers", "Pittsburgh Penguins", "Boston Bruins", "Buffalo Sabres", "Montreal Canadiens", "Ottawa Senators", "Toronto Maple Leafs", "Carolina Hurricanes", "Florida Panthers", "Tampa Bay Lightning", "Washington Capitals", "Winnipeg Jets", "Chicago Blackhawks", "Columbus Blue Jackets", "Detroit Red Wings", "Nashville Predators", "St. Louis Blues", "Calgary Flames", "Colorado Avalanche", "Edmonton Oilers", "Minnesota Wild", "Vancouver Canucks", "Anaheim Ducks", "Dallas Stars", "Los Angeles Kings", "Phoenix Coyotes", "San Jose Sharks", "Montreal Wanderers", "Quebec Nordiques", "Hartford Whalers"]), // because a bracket needs some teams!
+        exampleTeams = _.shuffle(teams), // because a bracket needs some teams!
         bracketCount = 0;
     console.log($(exampleTeams).length);
 
