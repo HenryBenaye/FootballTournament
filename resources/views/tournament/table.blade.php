@@ -202,7 +202,7 @@
         @endforeach
     </ol>
 </div>
-<div id="add" class="metroBtn">Add Bracket</div>
+<div id="add" class="metroBtn">Begin Toernooi</div>
 <div id="clear" class="metroBtn">Clear</div>
 <div class="brackets" id="brackets"></div>
 
@@ -308,7 +308,7 @@
     }
 
     $('#add').on('click', function () {
-        var opts = parseInt(prompt('Bracket size (number of teams):', 32));
+        var opts = teams.length;
 
         if (!_.isNaN(opts) && opts <= _.last(knownBrackets))
             getBracket(opts);
