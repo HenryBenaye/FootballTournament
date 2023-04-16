@@ -310,9 +310,12 @@
     $('#add').on('click', function () {
         var opts = teams.length;
 
-        if (!_.isNaN(opts) && opts <= _.last(knownBrackets))
+        if (!_.isNaN(opts) && opts <= _.last(knownBrackets)){
+
+            if ( $('#brackets')) $('#brackets').html("");
+
             getBracket(opts);
-        else
+        }else
             alert('The bracket size you specified is not currently supported.');
         $('#clear').off('click');
         $('#clear').on('click', function () {
