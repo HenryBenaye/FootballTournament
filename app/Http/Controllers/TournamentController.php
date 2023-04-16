@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Teams;
 use App\Models\Tournament;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class TournamentController extends Controller
      */
     public function index()
     {
-        //
+        $tournament = Tournament::all()->last();
+        return view('tournament.table', ['tournament' => $tournament]);
     }
 
     /**
@@ -31,6 +33,15 @@ class TournamentController extends Controller
         $tournament = new Tournament();
         $tournament->teams = $request['amountTeams'];
         $tournament->save();
+        for ($x = 0; $x <= $request['amountTeams']-1; $x++)
+        {
+            $teams = new Teams();
+            $teams->tournament_id = $tournament->id;
+            $teams->team_name = $request['teamName'.$x];
+            $teams->save();
+
+        }
+        return $this->index();
     }
 
     /**

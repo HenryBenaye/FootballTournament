@@ -5,7 +5,7 @@
 </x-layout>
 <body class="antialiased h-full">
 <div class="w-full h-full flex justify-center items-center flex-col">
-    <form id="form" class="border-solid border-2 border-black rounded-md p-4 shadow-xl" method="post" action="{{"tournament.store"}}">
+    <form id="form" class="border-solid border-2 border-black rounded-md p-4 shadow-xl" method="post" action="{{route("tournament.store")}}">
         @csrf
         @method('POST')
         <div id="inputTeams" class="mb-4">

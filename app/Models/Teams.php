@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Teams extends Model
 {
     use HasFactory;
+
+    public function tournament()
+    {
+        return $this->belongsTo(Tournament::class);
+    }
 }
